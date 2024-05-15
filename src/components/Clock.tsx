@@ -19,10 +19,8 @@ const Clock: React.FC = () => {
 
   const { hours, minutes, seconds } = time;
   const clockSize = 300;
-  let test: number = 90;
   const styles = StyleSheet.create({
     container: {
-      minWidth: '100%',
       minHeight: '100%',
       display: 'flex',
       alignItems: 'center',
@@ -34,109 +32,94 @@ const Clock: React.FC = () => {
       minHeight: clockSize,
       borderRadius: clockSize/2 ,
       position: 'relative',
-      display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
       backgroundColor: '#f0f0f0',
-      borderWidth: 15,
+      borderWidth: clockSize/60,
       borderColor: '#333',
       borderStyle: 'solid'
 
     },
 
     number: {
-      fontSize: 12, 
+      fontSize: clockSize/25, 
       fontWeight: 600,
       position: 'absolute',
       width: '100%',
       height: '100%',
       textAlign: 'center',
-      padding: 5,
-      flex: 1,
     },
     number1: {
       transform: `rotate(30deg)`,
     },
     number2: {
-        transform: `rotate(60deg)`
+      transform: `rotate(60deg)`
     },
     number3: {
-        transform: `rotate(90deg)`
+      transform: `rotate(90deg)`
     },
     number4: {
-        transform: `rotate(120deg)`
+      transform: `rotate(120deg)`
     },
     number5: {
-        transform: `rotate(150deg)`
+      transform: `rotate(150deg)`
     },
     number6: {
-        transform: `rotate(180deg)`
+      transform: `rotate(180deg)`
     },
     number7: {
-        transform: `rotate(210deg)`
+      transform: `rotate(210deg)`
     },
     number8: {
-        transform: `rotate(240deg)`
+      transform: `rotate(240deg)`
     },
     number9: {
-        transform: `rotate(270deg)`
+      transform: `rotate(270deg)`
     },
     number10: {
-        transform: `rotate(300deg)`
+      transform: `rotate(300deg)`
     },
     number11: {
-        transform: `rotate(330deg)`
+      transform: `rotate(330deg)`
     },
     number12: {
-        transform: `rotate(360deg)`
+      transform: `rotate(360deg)`
     },
     center: {
       width: clockSize/15,
       height: clockSize/15,
-      borderRadius:clockSize/15,
+      borderRadius: clockSize,
       backgroundColor:'#a52a2a',
       position:'absolute',
-      top: `${clockSize/6}%`,
-      left: `${clockSize/6}%`,
-      transformOrigin: `${clockSize/6}% ${clockSize/3}%`,
-      transform: `translate(${-(clockSize * 1.4555)}px, -20px)`,
+
       zIndex: 2
     },
     secondHand: {
-      width: 2,
-      height: 120,
-      backgroundColor: '#a52a2a',
+      width:clockSize/(clockSize/2),
+      height: clockSize/(clockSize/125),
+      backgroundColor: '#FF0000',
       borderRadius: clockSize/(clockSize/10),
       transformOrigin: `${clockSize/6}% ${clockSize/3}%`,
-      transform: `translate(${-(clockSize *1.4455)}px, -125px) rotate(${seconds * 6 + 6}deg)`,
-      position:'absolute',
-      top: `${clockSize/6}%`,
-      left: `${clockSize/6}%`,
-      zIndex: 1
+      transform: `translate(0px, -${clockSize/4.9}px) rotate(${seconds * 6}deg)`,
+      position: 'absolute'
     },
     minuteHand: {
-      width:3,
-      height: 110,
-      backgroundColor: '#333',
+      width:clockSize/100,
+      height: clockSize/3,
+      backgroundColor: '#333333',
       borderRadius: clockSize/(clockSize/10),
-      transform: `translate(${-(clockSize *1.4455)}px, -115px) rotate(${minutes * 6}deg)`,
-      position:'absolute',
       transformOrigin: `${clockSize/6}% ${clockSize/3}%`,
-      top: `${clockSize/6}%`,
-      left: `${clockSize/6}%`,
-      zIndex: 1
+      transform: `translate(0px, -${clockSize/6}px) rotate(${minutes * 6}deg)`,
+      position: 'absolute'
     },
     hourHand: {
-      width: 11,
-      height: 75,
-      backgroundColor: '#333',
+      width:clockSize/(clockSize/5),
+      height: clockSize/5,
+      backgroundColor: '#333333',
       borderRadius: clockSize/(clockSize/10),
       transformOrigin: `${clockSize/6}% ${clockSize/3}%`,
-      transform: `translate(${-(clockSize *1.4455)}px, -82.5px) rotate(${hours * 30 - 90}deg)`,
-      position:'absolute',
-      top: `${clockSize/6}%`,
-      left: `${clockSize/6}%`,
-      zIndex: 1
+      transform: `translate(0px, -${clockSize/10}px) rotate(${minutes * 0.5 + (hours * 30 - 90)}deg)`,
+      position: 'absolute'
     },
     
   });
