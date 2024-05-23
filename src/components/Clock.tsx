@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, Dimensions } from 'react-native';
 
 
 const Clock: React.FC = () => {
   const [time, setTime] = useState({ hours: 0, minutes: 0, seconds: 0 });
+  // altura e largura
+  const {height, width} = Dimensions.get('window');
 
+  
   useEffect(() => {
     const timer = setInterval(() => {
       const date = new Date();
@@ -18,7 +21,9 @@ const Clock: React.FC = () => {
   }, []);
 
   const { hours, minutes, seconds } = time;
-  const clockSize = 300;
+  const coeficienteClockSize = 200
+  const clockSize = (width/height)*coeficienteClockSize;
+  
   const styles = StyleSheet.create({
     container: {
       minHeight: '100%',
@@ -85,9 +90,9 @@ const Clock: React.FC = () => {
     number12: {
       transform: `rotate(360deg)`
     },
-    center: {
-      width: clockSize/15,
-      height: clockSize/15,
+      center: {
+      width: clockSize/30,
+      height: clockSize/30,
       borderRadius: clockSize,
       backgroundColor:'#a52a2a',
       position:'absolute',
@@ -95,12 +100,12 @@ const Clock: React.FC = () => {
       zIndex: 2
     },
     secondHand: {
-      width:clockSize/(clockSize/2),
-      height: clockSize/(clockSize/125),
+      width:clockSize/200,
+      height: clockSize/2.5,
       backgroundColor: '#FF0000',
       borderRadius: clockSize/(clockSize/10),
-      transformOrigin: `${clockSize/6}% ${clockSize/3}%`,
-      transform: `translate(0px, -${clockSize/4.9}px) rotate(${seconds * 6}deg)`,
+      transformOrigin: `50% 100%`,
+      transform: `translate(0px, -${clockSize/5}px) rotate(${seconds*6}deg)`,
       position: 'absolute'
     },
     minuteHand: {
@@ -108,16 +113,16 @@ const Clock: React.FC = () => {
       height: clockSize/3,
       backgroundColor: '#333333',
       borderRadius: clockSize/(clockSize/10),
-      transformOrigin: `${clockSize/6}% ${clockSize/3}%`,
-      transform: `translate(0px, -${clockSize/6}px) rotate(${minutes * 6}deg)`,
+      transformOrigin: `50% 100%`,
+      transform: `translate(0px, -${clockSize/6}px) rotate(${minutes*6}deg)`,
       position: 'absolute'
     },
     hourHand: {
-      width:clockSize/(clockSize/5),
+      width:clockSize/(clockSize/(coeficienteClockSize/30)),
       height: clockSize/5,
       backgroundColor: '#333333',
       borderRadius: clockSize/(clockSize/10),
-      transformOrigin: `${clockSize/6}% ${clockSize/3}%`,
+      transformOrigin: `50% 100%`,
       transform: `translate(0px, -${clockSize/10}px) rotate(${minutes * 0.5 + (hours * 30 - 90)}deg)`,
       position: 'absolute'
     },
@@ -146,7 +151,7 @@ const Clock: React.FC = () => {
 
           <View style={[ styles.secondHand]} />
           <View style={[ styles.minuteHand]} />
-          <View style={[ styles.hourHand]} />
+          <View style={[ styles.hourHand]} /> 
       </View>
     </View>
    
