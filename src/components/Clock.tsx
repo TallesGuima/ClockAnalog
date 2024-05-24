@@ -2,7 +2,19 @@ import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, Dimensions } from 'react-native';
 
 
-const Clock: React.FC = () => {
+interface ClockProps {
+  x?: number;
+  y?: number;
+}
+
+const defaultProps: ClockProps = {
+  x: 0,
+  y: 0,
+};
+
+
+const Clock: React.FC<ClockProps> = (props) => {
+
   const [time, setTime] = useState({ hours: 0, minutes: 0, seconds: 0 });
   // altura e largura
   const {height, width} = Dimensions.get('window');
@@ -21,15 +33,19 @@ const Clock: React.FC = () => {
   }, []);
 
   const { hours, minutes, seconds } = time;
-  const coeficienteClockSize = 200
+  const coeficienteClockSize = 150;
   const clockSize = (width/height)*coeficienteClockSize;
   
+
   const styles = StyleSheet.create({
     container: {
       minHeight: '100%',
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
+      flexDirection: 'column',
+      bottom: props.y,
+      left: props.x
     },
 
     clock: {
@@ -48,47 +64,71 @@ const Clock: React.FC = () => {
 
     number: {
       fontSize: clockSize/25, 
-      fontWeight: 600,
+      fontWeight: '600',
       position: 'absolute',
       width: '100%',
       height: '100%',
       textAlign: 'center',
     },
     number1: {
-      transform: `rotate(30deg)`,
+      transform: [
+        { rotate: '30deg' } 
+      ]
     },
     number2: {
-      transform: `rotate(60deg)`
+      transform: [
+        { rotate: '60deg' } 
+      ]
     },
     number3: {
-      transform: `rotate(90deg)`
+      transform: [
+        { rotate: '90deg' } 
+      ]
     },
     number4: {
-      transform: `rotate(120deg)`
+      transform: [
+        { rotate: '120deg' } 
+      ]
     },
     number5: {
-      transform: `rotate(150deg)`
+      transform: [
+        { rotate: '150deg' } 
+      ]
     },
     number6: {
-      transform: `rotate(180deg)`
+      transform: [
+        { rotate: '180deg' } 
+      ]
     },
     number7: {
-      transform: `rotate(210deg)`
+      transform: [
+        { rotate: '210deg' } 
+      ]
     },
     number8: {
-      transform: `rotate(240deg)`
+      transform: [
+        { rotate: '240deg' } 
+      ]
     },
     number9: {
-      transform: `rotate(270deg)`
+      transform: [
+        { rotate: '270deg' } 
+      ]
     },
     number10: {
-      transform: `rotate(300deg)`
+      transform: [
+        { rotate: '300deg' } 
+      ]
     },
     number11: {
-      transform: `rotate(330deg)`
+      transform: [
+        { rotate: '330deg' } 
+      ]
     },
     number12: {
-      transform: `rotate(360deg)`
+      transform: [
+        { rotate: '360deg' } 
+      ]
     },
       center: {
       width: clockSize/30,
@@ -103,16 +143,16 @@ const Clock: React.FC = () => {
       width:clockSize/200,
       height: clockSize/2.5,
       backgroundColor: '#FF0000',
-      borderRadius: clockSize/(clockSize/10),
+      borderRadius: clockSize,
       transformOrigin: `50% 100%`,
       transform: `translate(0px, -${clockSize/5}px) rotate(${seconds*6}deg)`,
-      position: 'absolute'
+      position: 'absolute',
     },
     minuteHand: {
       width:clockSize/100,
       height: clockSize/3,
       backgroundColor: '#333333',
-      borderRadius: clockSize/(clockSize/10),
+      borderRadius: clockSize,
       transformOrigin: `50% 100%`,
       transform: `translate(0px, -${clockSize/6}px) rotate(${minutes*6}deg)`,
       position: 'absolute'
@@ -121,7 +161,7 @@ const Clock: React.FC = () => {
       width:clockSize/(clockSize/(coeficienteClockSize/30)),
       height: clockSize/5,
       backgroundColor: '#333333',
-      borderRadius: clockSize/(clockSize/10),
+      borderRadius: clockSize,
       transformOrigin: `50% 100%`,
       transform: `translate(0px, -${clockSize/10}px) rotate(${minutes * 0.5 + (hours * 30 - 90)}deg)`,
       position: 'absolute'
@@ -154,8 +194,8 @@ const Clock: React.FC = () => {
           <View style={[ styles.hourHand]} /> 
       </View>
     </View>
-   
   );
-};
+
+}
 
 export default Clock;
